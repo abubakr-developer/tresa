@@ -6,7 +6,8 @@ export const getSocket = () => socket;
 
 export const initSocket = (token) => {
   if (socket) socket.disconnect();
-  socket = io('/', {
+  const socketUrl = import.meta.env.VITE_SOCKET_URL || '/';
+  socket = io(socketUrl, {
     auth: { token },
     transports: ['websocket', 'polling'],
   });
